@@ -44,10 +44,6 @@
     .guide-card:hover { transform:translateY(-4px); border-color:#c8d9f8; box-shadow:0 11px 24px #2355a41a; }
     .icon { width:60px; height:60px; display:grid; place-items:center; margin:0 auto 12px; border-radius:19px; font-size:25px; font-weight:800; }
     .guide-card span { font-size:15px; font-weight:700; }
-    .inline-answer { display:none; margin-top:16px; padding:18px; border:1px solid #cfdcf4; border-radius:18px; color:#40506b; background:#fff; box-shadow:0 9px 22px #26385b12; line-height:1.8; white-space:pre-line; }
-    .inline-answer.show { display:block; animation:up .25s ease-out; }
-    .inline-answer h3 { margin:0 0 9px; color:#1760ce; font-size:17px; }
-    .inline-answer p { margin:0; }
     .c1 { background:#eaf2ff; color:#1f65ca; } .c2 { background:#fff2e2; color:#e88c30; } .c3 { background:#e6f8f2; color:#1d9a72; } .c4 { background:#eef3ff; color:#3b6fc9; }
     .c5 { background:#fff3e5; color:#e7952e; } .c6 { background:#e7f8f2; color:#249874; } .c7 { background:#ebf2ff; color:#3972d1; } .c8 { background:#fff1e4; color:#e99034; }
     .ask-card { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px; overflow:hidden; padding:24px 28px; border-radius:24px; color:white; background:linear-gradient(115deg,#15439e,#1763d2); box-shadow:0 16px 30px #1751a72d; }
@@ -105,7 +101,7 @@
     .always-qr p { margin:0; color:#8f94a2; font-size:13px; line-height:1.6; }
     @keyframes fade { from { opacity:0 } } @keyframes up { from { transform:translateY(15px); opacity:0 } }
     @media (max-width:900px) { .content-grid { grid-template-columns:1fr; } }
-    @media (max-width:620px) { body { background:#f7f8fc; } .app { min-height:100vh; } .topbar { height:72px; padding:0 20px; } .school-logo { width:39px; height:39px; } .brand-name { font-size:14px; } .brand-sub { font-size:11px; } .top-link { padding:8px 10px; font-size:12px; } main,.qa-page { padding:18px 16px 87px; } .hero { min-height:300px; padding:29px 24px; border-radius:25px; } .hero-glow { right:-90px; top:-40px; } h1 { margin:18px 0 10px; font-size:31px; } .hero p { font-size:14px; } .hero-actions { margin-top:25px; gap:9px; } .btn { padding:11px 13px; font-size:13px; } .notice { padding:16px 3px 4px; font-size:12px; } .content-grid { margin-top:31px; } h2 { font-size:24px; } .guide-grid { gap:10px; } .guide-card { min-height:128px; padding:13px 7px 10px; border-radius:18px; } .icon { width:52px; height:52px; margin-bottom:10px; border-radius:17px; font-size:22px; } .guide-card span { font-size:13px; } .inline-answer { margin-top:12px; padding:15px; font-size:14px; } .modal { display:none !important; } .ask-card { grid-template-columns:auto 1fr; gap:0 13px; padding:19px; border-radius:21px; } .ask-card h3 { font-size:16px; } .ask-card p { font-size:12px; } .ask-card button { grid-column:2; justify-self:start; margin-top:12px; padding:10px 15px; } .bottom-nav { position:fixed; z-index:10; display:flex; align-items:center; justify-content:space-around; height:67px; right:0; bottom:0; left:0; border-top:1px solid #e9ecf3; background:#fffffff2; backdrop-filter:blur(10px); } .nav-item { border:0; color:#9ca5b5; background:transparent; font-size:11px; } .nav-item strong { display:block; margin-bottom:4px; font-size:18px; font-weight:500; } .nav-item.active { color:#1760ce; } .dialog { border-radius:21px; } .qa-top { margin-bottom:22px; } .qa-banner { align-items:flex-start; padding:22px 18px; border-radius:25px; } .qa-avatar { width:62px; height:62px; font-size:28px; } .qa-banner h3 { font-size:19px; } .qa-banner p { font-size:12px; } .qa-note { font-size:12px; line-height:1.6; } .chip { padding:9px 13px; font-size:13px; } .bubble,.qa-answer { font-size:14px; } .ask-input { margin-top:23px; } .ask-input button { padding:0 15px; } .always-qr { gap:13px; padding:12px; } .always-qr img { width:78px; height:78px; } }
+    @media (max-width:620px) { body { background:#f7f8fc; } .app { min-height:100vh; } .topbar { height:72px; padding:0 20px; } .school-logo { width:39px; height:39px; } .brand-name { font-size:14px; } .brand-sub { font-size:11px; } .top-link { padding:8px 10px; font-size:12px; } main,.qa-page { padding:18px 16px 87px; } .hero { min-height:300px; padding:29px 24px; border-radius:25px; } .hero-glow { right:-90px; top:-40px; } h1 { margin:18px 0 10px; font-size:31px; } .hero p { font-size:14px; } .hero-actions { margin-top:25px; gap:9px; } .btn { padding:11px 13px; font-size:13px; } .notice { padding:16px 3px 4px; font-size:12px; } .content-grid { margin-top:31px; } h2 { font-size:24px; } .guide-grid { gap:10px; } .guide-card { min-height:128px; padding:13px 7px 10px; border-radius:18px; } .icon { width:52px; height:52px; margin-bottom:10px; border-radius:17px; font-size:22px; } .guide-card span { font-size:13px; } .ask-card { grid-template-columns:auto 1fr; gap:0 13px; padding:19px; border-radius:21px; } .ask-card h3 { font-size:16px; } .ask-card p { font-size:12px; } .ask-card button { grid-column:2; justify-self:start; margin-top:12px; padding:10px 15px; } .bottom-nav { position:fixed; z-index:10; display:flex; align-items:center; justify-content:space-around; height:67px; right:0; bottom:0; left:0; border-top:1px solid #e9ecf3; background:#fffffff2; backdrop-filter:blur(10px); } .nav-item { border:0; color:#9ca5b5; background:transparent; font-size:11px; } .nav-item strong { display:block; margin-bottom:4px; font-size:18px; font-weight:500; } .nav-item.active { color:#1760ce; } .dialog { border-radius:21px; } .qa-top { margin-bottom:22px; } .qa-banner { align-items:flex-start; padding:22px 18px; border-radius:25px; } .qa-avatar { width:62px; height:62px; font-size:28px; } .qa-banner h3 { font-size:19px; } .qa-banner p { font-size:12px; } .qa-note { font-size:12px; line-height:1.6; } .chip { padding:9px 13px; font-size:13px; } .bubble,.qa-answer { font-size:14px; } .ask-input { margin-top:23px; } .ask-input button { padding:0 15px; } .always-qr { gap:13px; padding:12px; } .always-qr img { width:78px; height:78px; } }
   </style>
 </head>
 <body>
@@ -128,7 +124,6 @@
         <div>
           <section><div class="section-head"><div><h2>新生常用入口</h2><p>第一次进来，先看这些</p></div><button class="all" data-action="ask">向学长提问 ›</button></div>
             <div class="guide-grid" id="guideGrid"></div>
-            <section class="inline-answer" id="inlineAnswer" aria-live="polite"><h3 id="inlineTitle"></h3><p id="inlineText"></p></section>
           </section>
         </div>
         <aside class="ask-card"><div class="avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div><h3>你的本校服务学长</h3><p>真实在校生，为你的新生活答疑解惑</p></div><button data-action="ask">向他提问</button></aside>
@@ -158,25 +153,20 @@
     ];
     const answers = Object.fromEntries(guides.map(([, guideTitle, , guideAnswer]) => [guideTitle, guideAnswer]));
     const grid = document.getElementById('guideGrid');
-    guides.forEach(([word, guideTitle, color]) => {
+    guides.forEach(([word, guideTitle, color, guideAnswer]) => {
       const card = document.createElement('button');
       card.type = 'button';
       card.className = 'guide-card';
-      card.dataset.open = guideTitle;
       card.innerHTML = `<div class="icon ${color}">${word}</div><span>${guideTitle}</span>`;
-      card.addEventListener('click', () => openDialog(guideTitle));
+      card.onclick = () => openDialog(guideTitle, guideAnswer);
       grid.appendChild(card);
     });
     const modal=document.getElementById('modal'), title=document.getElementById('dialogTitle'), answer=document.getElementById('dialogAnswer');
-    const inlineAnswer=document.getElementById('inlineAnswer'), inlineTitle=document.getElementById('inlineTitle'), inlineText=document.getElementById('inlineText');
-    function openDialog(key){
-      const reply = answers[key];
+    function openDialog(key, directReply){
+      const reply = directReply || answers[key];
       if (!reply) return;
       title.textContent = key;
       answer.textContent = reply;
-      inlineTitle.textContent = key;
-      inlineText.textContent = reply;
-      inlineAnswer.classList.add('show');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
     }
