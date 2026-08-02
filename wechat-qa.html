@@ -64,7 +64,6 @@
     .bottom-nav { display:none; }
     .modal { position:fixed; z-index:20; inset:0; display:none; align-items:center; justify-content:center; padding:20px; background:#101a2d76; backdrop-filter:blur(5px); }
     .modal.open { display:flex; animation:fade .2s; }
-    .modal:target { display:flex; animation:fade .2s; }
     .dialog { width:min(100%,520px); overflow:hidden; border-radius:23px; background:#fff; box-shadow:0 24px 80px #0004; animation:up .25s ease-out; }
     .dialog-head { display:flex; justify-content:space-between; align-items:center; padding:23px 24px 16px; }
     .dialog-title { display:flex; gap:10px; align-items:center; font-size:19px; font-weight:800; }
@@ -134,7 +133,7 @@
   </div>
   <section class="qa-page" id="qaPage"><div class="qa-top"><button class="back" id="backHome" aria-label="返回">‹</button><h2>校园问答</h2></div><div class="qa-banner"><div class="qa-avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div><h3>本校服务学长 · 校园问答</h3><p>基于本校资料在线回答</p></div></div><div class="always-qr"><img src="wechat-qr.jpg" alt="卫冕（服务版）微信二维码" /><div><h3>学长微信</h3><p>扫码添加学长微信，获取校园地图。</p></div></div><p class="qa-note">内容仅供参考，请以学校官方通知为准</p><div class="question-chips" id="questionChips"></div><div class="chat"><div class="chat-avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div class="bubble">你好，我是本校服务学长。你可以选择下面的问题查看答案。</div></div><div class="qa-answer" id="qaAnswer"></div><form class="ask-input" id="askForm"><input id="customQuestion" type="text" placeholder="问点校园里的事…" aria-label="输入其他问题" required /><button type="submit">发送</button></form></section>
   <div class="modal" id="wechatModal" aria-hidden="true"><div class="dialog wechat-dialog" role="dialog" aria-modal="true" aria-labelledby="wechatTitle"><div class="dialog-head"><span id="wechatTitle" class="dialog-title">学长微信</span><button class="close" id="closeWechat" aria-label="关闭">×</button></div><img class="wechat-qr" src="wechat-qr.jpg" alt="卫冕（服务版）微信二维码" /><p class="wechat-name">卫冕（服务版）</p><p class="wechat-tip">你的问题学长给你单独解答，添加学长微信获取即可，额外赠送一份校园地图。</p></div></div>
-  <div class="modal" id="admissionModal" aria-hidden="false"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="admissionTitle"><div class="dialog-head"><div class="dialog-title"><span class="q-mark">答</span><span id="admissionTitle">录取查询</span></div><a class="close" href="#" aria-label="关闭">×</a></div><p class="answer">认准学校官方发布。\n\n录取查询方式：考生可通过微信小程序“广东科学技术职业学院招生办”下方的自助查询查看录取信息。</p><div class="dialog-foot">以上为示例内容，具体安排请以学校正式通知为准。</div></div></div>
+  <div class="modal" id="admissionModal" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="admissionTitle"><div class="dialog-head"><div class="dialog-title"><span class="q-mark">答</span><span id="admissionTitle">录取查询</span></div><button class="close" id="closeAdmission" type="button" aria-label="关闭">×</button></div><p class="answer">认准学校官方发布。\n\n录取查询方式：考生可通过微信小程序“广东科学技术职业学院招生办”下方的自助查询查看录取信息。</p><div class="dialog-foot">以上为示例内容，具体安排请以学校正式通知为准。</div></div></div>
   <div class="modal" id="modal" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-head"><div class="dialog-title"><span class="q-mark">答</span><span id="dialogTitle">新生服务站</span></div><button class="close" id="closeModal" aria-label="关闭">×</button></div><p class="answer" id="dialogAnswer"></p><div class="dialog-foot">以上为示例内容，具体安排请以学校正式通知为准。</div></div></div>
   <script>
     const guides = [
@@ -156,15 +155,16 @@
     const answers = Object.fromEntries(guides.map(([, guideTitle, , guideAnswer]) => [guideTitle, guideAnswer]));
     const grid = document.getElementById('guideGrid');
     guides.forEach(([word, guideTitle, color, guideAnswer]) => {
-      const card = document.createElement(guideTitle === '录取查询' ? 'a' : 'button');
-      if (guideTitle === '录取查询') card.href = '#admissionModal';
-      else card.type = 'button';
+      const card = document.createElement('button');
+      card.type = 'button';
       card.className = 'guide-card';
       card.innerHTML = `<div class="icon ${color}">${word}</div><span>${guideTitle}</span>`;
-      if (guideTitle !== '录取查询') card.onclick = () => openDialog(guideTitle, guideAnswer);
+      card.onclick = guideTitle === '录取查询' ? openAdmission : () => openDialog(guideTitle, guideAnswer);
       grid.appendChild(card);
     });
     const modal=document.getElementById('modal'), title=document.getElementById('dialogTitle'), answer=document.getElementById('dialogAnswer');
+    const admissionModal=document.getElementById('admissionModal');
+    function openAdmission(){ admissionModal.classList.add('open'); admissionModal.setAttribute('aria-hidden','false'); }
     function openDialog(key, directReply){
       const reply = directReply || answers[key];
       if (!reply) return;
@@ -186,7 +186,9 @@
     wechatModal.onclick=e=>{ if(e.target===wechatModal) closeModal(wechatModal); };
     document.getElementById('closeModal').onclick=()=>closeModal(modal);
     modal.onclick=e=>{ if(e.target===modal) closeModal(modal); };
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(modal); closeModal(wechatModal); } });
+    document.getElementById('closeAdmission').onclick=()=>closeModal(admissionModal);
+    admissionModal.onclick=e=>{ if(e.target===admissionModal) closeModal(admissionModal); };
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(modal); closeModal(wechatModal); closeModal(admissionModal); } });
   </script>
 </body>
 </html>
