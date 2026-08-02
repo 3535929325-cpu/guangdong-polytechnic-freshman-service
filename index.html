@@ -151,24 +151,40 @@
       ['珠海校区周边有什么？','珠海校区周边有两个商圈，一条美食街，骑单车15分钟能到。公交一个小时到澳门。'],
       ['如何转专业？','转专业条件\n\n（一）学生入校后原则上应按照被录取的专业就读。\n\n下列情况允许转专业：\n1.经考察学生确有专长、转专业更能发挥其专长者\n2.新生入学后经复查发现某种疾病或生理缺陷，经学校指定的医院检查证明，不能在原专业学习，但尚能在本校其他专业学习者；\n3.经学校认可，学生确有某种特殊困难，不转专业则无法继续学习者；\n4.休学创业或退役大学生士兵复学，可根据本人意愿或学校的专业设置变化情况进行转专业；\n5.各二级学院根据各专业招生人数、教学组织需要及社会对人才需求的发展变化，必要时可在征得学生同意的情况下适当调整部分学生的专业；\n6.各类教学改革（包括：大类招生培养分流、创新班选拔、学分制管理、对外交流合作、参与创新创业等），需要进行学生的专业调整的。\n\n（二）下列转专业申请不能被批准：\n\n1.按照艺术类专业招生办法录取的考生，要求转入非艺术类专业学习的；按照非艺术类专业招生办法录取的考生，要求转入艺术类专业学习的；\n2.文科类学生要求转入只招收理科类学生的专业的；\n3.招生时有明确规定不能转专业的本、专科学生，如定向生、国防生等；\n4.特殊录取类型学生申请转到统招专业的，如免试生、专插本、三二分段、五年一贯制、第二学士学位等；\n5.休学、保留学籍等学籍状况不正常的；\n6.已有一次转专业经历的；\n7.身体条件不符合转入专业要求的；\n8.应受到开除学籍处分或应予退学者；\n9.发放新生录取通知书和新生入学报到环节；\n10.本科三年级以上或专科二年级以上的；\n11.其他规定不能转专业的情形。\n\n转专业程序\n\n1.每年的6月、12月学生提出转专业申请，具体见学校通知；\n2.转出专业所在二级学院签署意见；\n3.转入二级学院签署意见（必要时进行测评）；\n4.转专业工作委员会审核；\n5.对已通过审核的转专业学生名单进行不少于5个工作日的公示，公示期满，学校正式发文公布转专业结果并将专业调整情况提交学信网，供学生查询；\n6.跨学院转专业的学生，应在学校规定的时间前往转入专业所在二级学院报到。\n\n转专业学籍管理\n\n1.学生转入新的专业后，必须修满转入专业人才培养方案所规定的课程学分、完全符合相关条件后方能毕业及获得学士学位，转专业前已修完的课程与转入专业相同，其学分数高于或等于转入专业的可互相替代，转入专业已开设完毕的课程，转入学生尚未修读的，须补修。\n\n2.转专业学生学费按转入专业入学当年的收费标准收取。']
     ];
-    const answers = Object.fromEntries(guides.map(x => [x[1],x[3]]));
+    const answers = Object.fromEntries(guides.map(([, guideTitle, , guideAnswer]) => [guideTitle, guideAnswer]));
     const grid = document.getElementById('guideGrid');
-    guides.forEach(([word,title,color]) => { const b=document.createElement('button'); b.className='guide-card'; b.dataset.open=title; b.innerHTML=`<div class="icon ${color}">${word}</div><span>${title}</span>`; grid.appendChild(b); });
+    guides.forEach(([word, guideTitle, color]) => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'guide-card';
+      card.dataset.open = guideTitle;
+      card.innerHTML = `<div class="icon ${color}">${word}</div><span>${guideTitle}</span>`;
+      card.addEventListener('click', () => openDialog(guideTitle));
+      grid.appendChild(card);
+    });
     const modal=document.getElementById('modal'), title=document.getElementById('dialogTitle'), answer=document.getElementById('dialogAnswer');
-    function openDialog(key){ title.textContent=key; answer.textContent=answers[key]; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); }
+    function openDialog(key){
+      const reply = answers[key];
+      if (!reply) return;
+      title.textContent = key;
+      answer.textContent = reply;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
     const app=document.querySelector('.app'), qaPage=document.getElementById('qaPage'), chips=document.getElementById('questionChips'), qaAnswer=document.getElementById('qaAnswer');
     questions.forEach(([question,reply]) => { const b=document.createElement('button'); b.className='chip'; b.textContent=question; b.onclick=()=>{ qaAnswer.textContent=reply; qaAnswer.classList.add('show'); }; chips.appendChild(b); });
     function showAsk(){ app.style.display='none'; qaPage.classList.add('show'); window.scrollTo(0,0); }
-    document.addEventListener('click',e=>{ const button=e.target.closest('[data-open]'); if(button) openDialog(button.dataset.open); const ask=e.target.closest('[data-action="ask"]'); if(ask) showAsk(); });
+    document.addEventListener('click',e=>{ const ask=e.target.closest('[data-action="ask"]'); if(ask) showAsk(); });
     document.getElementById('backHome').onclick=()=>{ qaPage.classList.remove('show'); app.style.display=''; qaAnswer.classList.remove('show'); window.scrollTo(0,0); };
     const wechatModal=document.getElementById('wechatModal'), customQuestion=document.getElementById('customQuestion');
     function showWechat(){ wechatModal.classList.add('open'); wechatModal.setAttribute('aria-hidden','false'); }
     document.getElementById('askForm').onsubmit=e=>{ e.preventDefault(); if(customQuestion.value.trim()) showWechat(); };
-    document.getElementById('closeWechat').onclick=()=>wechatModal.classList.remove('open');
-    wechatModal.onclick=e=>{ if(e.target===wechatModal) wechatModal.classList.remove('open'); };
-    document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');
-    modal.onclick=e=>{ if(e.target===modal) modal.classList.remove('open'); };
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') modal.classList.remove('open'); });
+    function closeModal(target){ target.classList.remove('open'); target.setAttribute('aria-hidden','true'); }
+    document.getElementById('closeWechat').onclick=()=>closeModal(wechatModal);
+    wechatModal.onclick=e=>{ if(e.target===wechatModal) closeModal(wechatModal); };
+    document.getElementById('closeModal').onclick=()=>closeModal(modal);
+    modal.onclick=e=>{ if(e.target===modal) closeModal(modal); };
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(modal); closeModal(wechatModal); } });
   </script>
 </body>
 </html>
