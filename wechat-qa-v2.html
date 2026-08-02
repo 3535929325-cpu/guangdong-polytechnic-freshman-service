@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1557c0" />
+  <title>广东科学技术职业学院 · 新生服务站</title>
+  <style>
+    :root { --blue:#1760ce; --deep:#123c98; --ink:#19233a; --muted:#8791a6; --line:#e8edf5; --paper:#fff; --bg:#f5f7fc; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--bg); font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif; }
+    button { font:inherit; cursor:pointer; }
+    .app { width:min(100%, 1240px); min-height:100vh; margin:auto; background:#f8f9fd; }
+    .topbar { height:78px; padding:0 clamp(24px,5vw,64px); display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.92); border-bottom:1px solid var(--line); }
+    .brand { display:flex; gap:12px; align-items:center; }
+    .school-logo { width:48px; height:48px; overflow:hidden; border-radius:50%; background:#fff; box-shadow:0 5px 14px #7a193329; }
+    .school-logo img { width:100%; height:100%; object-fit:cover; }
+    .brand-name { font-weight:700; font-size:16px; }
+    .brand-sub { margin-top:3px; color:#8b94a6; font-size:12px; }
+    .top-link { border:0; background:#edf4ff; color:#1760ce; border-radius:10px; padding:10px 15px; font-weight:600; }
+    main { padding:34px clamp(24px,5vw,64px) 96px; }
+    .hero { overflow:hidden; position:relative; min-height:298px; padding:41px 44px; border-radius:28px; color:white; background:linear-gradient(112deg,#123e99 0%,#1761d2 57%,#1555b6 100%); box-shadow:0 20px 36px #1756b52e; }
+    .hero:before,.hero:after { content:""; position:absolute; border:1px solid #ffffff22; border-radius:50%; pointer-events:none; }
+    .hero:before { width:440px; height:440px; right:-135px; bottom:-245px; }
+    .hero:after { width:610px; height:610px; right:-230px; bottom:-390px; border-color:#ffffff14; }
+    .hero-glow { position:absolute; width:290px; height:220px; right:70px; top:-90px; filter:blur(35px); border-radius:50%; background:#87b8ff7d; }
+    .hero-content { position:relative; z-index:1; max-width:680px; }
+    .tag { width:max-content; padding:9px 14px; border:1px solid #ffffff3f; border-radius:99px; background:#0d398a55; font-size:14px; font-weight:600; }
+    h1 { margin:22px 0 12px; font-size:clamp(31px,4vw,47px); letter-spacing:-1.4px; }
+    .hero p { margin:0; color:#d7e6ff; font-size:16px; line-height:1.7; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .btn { padding:13px 20px; border-radius:13px; border:1px solid #ffffff4f; color:white; background:#ffffff18; font-size:15px; font-weight:700; transition:.2s; }
+    .btn:hover { transform:translateY(-2px); background:#ffffff30; }
+    .btn-primary { color:#1552b4; background:white; border-color:white; }
+    .notice { display:flex; gap:10px; align-items:flex-start; padding:18px 7px 8px; color:#8b94a6; font-size:13px; line-height:1.55; }
+    .notice i { flex:0 0 auto; width:23px; height:23px; display:grid; place-items:center; border-radius:50%; color:#fff; font-family:serif; font-style:normal; font-weight:bold; background:#acb6c7; }
+    .content-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:28px; margin-top:31px; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; margin-bottom:18px; }
+    h2 { margin:0; font-size:26px; letter-spacing:-.6px; }
+    .section-head p { margin:7px 0 0; color:#939bae; font-size:14px; }
+    .all { border:0; color:var(--blue); background:transparent; font-weight:700; white-space:nowrap; }
+    .guide-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .guide-card { min-height:146px; padding:18px 14px 14px; text-align:center; border:1px solid #e6eaf2; border-radius:20px; color:var(--ink); background:white; box-shadow:0 5px 14px #26385b08; transition:.22s; }
+    .guide-card:hover { transform:translateY(-4px); border-color:#c8d9f8; box-shadow:0 11px 24px #2355a41a; }
+    .icon { width:60px; height:60px; display:grid; place-items:center; margin:0 auto 12px; border-radius:19px; font-size:25px; font-weight:800; }
+    .guide-card span { font-size:15px; font-weight:700; }
+    .c1 { background:#eaf2ff; color:#1f65ca; } .c2 { background:#fff2e2; color:#e88c30; } .c3 { background:#e6f8f2; color:#1d9a72; } .c4 { background:#eef3ff; color:#3b6fc9; }
+    .c5 { background:#fff3e5; color:#e7952e; } .c6 { background:#e7f8f2; color:#249874; } .c7 { background:#ebf2ff; color:#3972d1; } .c8 { background:#fff1e4; color:#e99034; }
+    .ask-card { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px; overflow:hidden; padding:24px 28px; border-radius:24px; color:white; background:linear-gradient(115deg,#15439e,#1763d2); box-shadow:0 16px 30px #1751a72d; }
+    .ask-card:after { content:""; position:absolute; right:-70px; bottom:-100px; width:220px; height:220px; border:1px solid #ffffff26; border-radius:50%; }
+    .ask-card > * { position:relative; z-index:1; }
+    .avatar { width:54px; height:54px; display:grid; place-items:center; border:3px solid #ffe0bf; border-radius:17px; background:#ffbd87; font-size:24px; }
+    .avatar img,.qa-avatar img,.chat-avatar img { width:100%; height:100%; object-fit:cover; }
+    .avatar img { border-radius:13px; }
+    .ask-card h3 { margin:0 0 7px; font-size:19px; }
+    .ask-card p { margin:0; color:#c8dcff; font-size:13px; line-height:1.65; }
+    .ask-card button { padding:12px 20px; border:0; border-radius:12px; color:#1553b5; background:#fff; font-weight:800; white-space:nowrap; }
+    .faq { margin-top:40px; }
+    .faq-list { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .faq-item { display:flex; gap:13px; align-items:center; width:100%; padding:17px 18px; text-align:left; border:1px solid var(--line); border-radius:15px; color:var(--ink); background:#fff; transition:.2s; }
+    .faq-item:hover { border-color:#b9d0f7; background:#fbfdff; }
+    .q-mark { width:29px; height:29px; flex:0 0 auto; display:grid; place-items:center; border-radius:9px; color:#1760ce; background:#eaf2ff; font-weight:800; }
+    .faq-item span:last-child { font-size:14px; font-weight:600; }
+    .bottom-nav { display:none; }
+    .modal { position:fixed; z-index:20; inset:0; display:none; align-items:center; justify-content:center; padding:20px; background:#101a2d76; backdrop-filter:blur(5px); }
+    .modal.open { display:flex; animation:fade .2s; }
+    .dialog { width:min(100%,520px); overflow:hidden; border-radius:23px; background:#fff; box-shadow:0 24px 80px #0004; animation:up .25s ease-out; }
+    .dialog-head { display:flex; justify-content:space-between; align-items:center; padding:23px 24px 16px; }
+    .dialog-title { display:flex; gap:10px; align-items:center; font-size:19px; font-weight:800; }
+    .close { width:33px; height:33px; border:0; border-radius:50%; color:#6e788b; background:#f0f3f8; font-size:22px; line-height:1; }
+    .answer { margin:0 24px 24px; padding:17px; border-radius:13px; color:#536077; background:#f5f8fd; font-size:15px; line-height:1.8; white-space:pre-line; }
+    .dialog-foot { padding:14px 24px 22px; color:#98a0af; font-size:12px; }
+    .qa-page { display:none; min-height:100vh; padding:34px clamp(24px,5vw,64px) 96px; background:#fafaff; }
+    .qa-page.show { display:block; }
+    .qa-top { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+    .back { width:44px; height:44px; border:0; border-radius:50%; color:#1760ce; background:#fff; box-shadow:0 5px 16px #26385b12; font-size:30px; line-height:1; }
+    .qa-top h2 { font-size:25px; }
+    .qa-banner { display:flex; align-items:center; gap:18px; padding:27px; border-radius:27px; color:#fff; background:linear-gradient(120deg,#7456d5,#ad76de); box-shadow:0 18px 33px #8559c52b; }
+    .qa-avatar { width:73px; height:73px; display:grid; place-items:center; flex:0 0 auto; overflow:hidden; border:3px solid #ead8ff; border-radius:50%; background:#f4ae8b; font-size:34px; }
+    .qa-banner h3 { margin:0 0 6px; font-size:23px; } .qa-banner p { margin:0; color:#f0e9ff; font-size:14px; }
+    .qa-note { margin:20px 0 18px; color:#a1a5b2; text-align:center; font-size:13px; }
+    .question-chips { display:flex; flex-wrap:wrap; gap:11px; }
+    .chip { padding:11px 16px; border:1px solid #e1d9ee; border-radius:999px; color:#7655a6; background:#fff; font-size:14px; transition:.2s; }
+    .chip:hover { color:#fff; border-color:#8459cd; background:#8459cd; }
+    .chat { display:flex; gap:13px; align-items:flex-start; margin-top:34px; }
+    .chat-avatar { width:45px; height:45px; display:grid; place-items:center; flex:0 0 auto; overflow:hidden; border-radius:50%; background:#f5b08a; font-size:22px; }
+    .bubble { max-width:min(700px,calc(100% - 58px)); padding:16px 19px; border-radius:7px 20px 20px 20px; color:#3f4655; background:#fff; box-shadow:0 7px 21px #3c315b12; line-height:1.8; white-space:pre-line; }
+    .qa-answer { display:none; margin-left:58px; margin-top:14px; padding:16px 19px; border-left:3px solid #9063d2; border-radius:0 16px 16px 0; color:#485064; background:#f0ebfa; line-height:1.8; white-space:pre-line; }
+    .qa-answer.show { display:block; animation:up .25s ease-out; }
+    .ask-input { display:flex; gap:10px; margin-top:28px; padding:8px; border-radius:19px; background:#fff; box-shadow:0 10px 26px #3c315b12; }
+    .ask-input input { min-width:0; flex:1; padding:11px 14px; border:0; outline:0; border-radius:12px; color:#3f4655; background:#f6f6fa; font:inherit; }
+    .ask-input button { padding:0 21px; border:0; border-radius:12px; color:#fff; background:linear-gradient(120deg,#7651c7,#a764dc); font-weight:700; }
+    .wechat-dialog { width:min(100%,430px); padding:20px; text-align:center; }
+    .wechat-dialog .dialog-head { padding:4px 0 12px; }
+    .wechat-qr { display:block; width:min(100%,330px); margin:0 auto; border-radius:12px; }
+    .wechat-name { margin:14px 0 4px; font-size:18px; font-weight:800; }
+    .wechat-tip { margin:0 0 5px; color:#9a9fac; font-size:14px; }
+    .always-qr { display:flex; align-items:center; gap:18px; margin:20px 0; padding:14px 18px; border:1px solid #eadff8; border-radius:20px; background:#fff; box-shadow:0 8px 22px #3c315b0d; }
+    .always-qr img { width:94px; height:94px; border-radius:10px; object-fit:cover; }
+    .always-qr h3 { margin:0 0 6px; font-size:16px; }
+    .always-qr p { margin:0; color:#8f94a2; font-size:13px; line-height:1.6; }
+    @keyframes fade { from { opacity:0 } } @keyframes up { from { transform:translateY(15px); opacity:0 } }
+    @media (max-width:900px) { .content-grid { grid-template-columns:1fr; } }
+    @media (max-width:620px) { body { background:#f7f8fc; } .app { min-height:100vh; } .topbar { height:72px; padding:0 20px; } .school-logo { width:39px; height:39px; } .brand-name { font-size:14px; } .brand-sub { font-size:11px; } .top-link { padding:8px 10px; font-size:12px; } main,.qa-page { padding:18px 16px 87px; } .hero { min-height:300px; padding:29px 24px; border-radius:25px; } .hero-glow { right:-90px; top:-40px; } h1 { margin:18px 0 10px; font-size:31px; } .hero p { font-size:14px; } .hero-actions { margin-top:25px; gap:9px; } .btn { padding:11px 13px; font-size:13px; } .notice { padding:16px 3px 4px; font-size:12px; } .content-grid { margin-top:31px; } h2 { font-size:24px; } .guide-grid { gap:10px; } .guide-card { min-height:128px; padding:13px 7px 10px; border-radius:18px; } .icon { width:52px; height:52px; margin-bottom:10px; border-radius:17px; font-size:22px; } .guide-card span { font-size:13px; } .ask-card { grid-template-columns:auto 1fr; gap:0 13px; padding:19px; border-radius:21px; } .ask-card h3 { font-size:16px; } .ask-card p { font-size:12px; } .ask-card button { grid-column:2; justify-self:start; margin-top:12px; padding:10px 15px; } .bottom-nav { position:fixed; z-index:10; display:flex; align-items:center; justify-content:space-around; height:67px; right:0; bottom:0; left:0; border-top:1px solid #e9ecf3; background:#fffffff2; backdrop-filter:blur(10px); } .nav-item { border:0; color:#9ca5b5; background:transparent; font-size:11px; } .nav-item strong { display:block; margin-bottom:4px; font-size:18px; font-weight:500; } .nav-item.active { color:#1760ce; } .dialog { border-radius:21px; } .qa-top { margin-bottom:22px; } .qa-banner { align-items:flex-start; padding:22px 18px; border-radius:25px; } .qa-avatar { width:62px; height:62px; font-size:28px; } .qa-banner h3 { font-size:19px; } .qa-banner p { font-size:12px; } .qa-note { font-size:12px; line-height:1.6; } .chip { padding:9px 13px; font-size:13px; } .bubble,.qa-answer { font-size:14px; } .ask-input { margin-top:23px; } .ask-input button { padding:0 15px; } .always-qr { gap:13px; padding:12px; } .always-qr img { width:78px; height:78px; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="school-logo"><img src="school-logo.jpg" alt="广东科学技术职业学院校徽" /></div><div><div class="brand-name">广东科学技术职业学院</div><div class="brand-sub">2026级新生服务站</div></div></div>
+      <button class="top-link" data-open="开学前必看">新生指南</button>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-glow"></div><div class="hero-content">
+          <div class="tag">🎓 广东科职 · 2026级迎新</div>
+          <h1>2026级新生服务站</h1>
+          <p>从录取到报到，从宿舍到校园生活，有问题随时来这里找答案。</p>
+          <div class="hero-actions"><button class="btn btn-primary" data-open="开学前必看">领取新生攻略</button><button class="btn" data-action="ask">有问题问学长</button></div>
+        </div>
+      </section>
+      <div class="notice"><i>i</i><span>本平台为学生校园服务平台，重要通知请以学校官方信息为准。</span></div>
+      <div class="content-grid">
+        <div>
+          <section><div class="section-head"><div><h2>新生常用入口</h2><p>第一次进来，先看这些</p></div><button class="all" data-action="ask">向学长提问 ›</button></div>
+            <div class="guide-grid" id="guideGrid"></div>
+          </section>
+        </div>
+        <aside class="ask-card"><div class="avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div><h3>你的本校服务学长</h3><p>真实在校生，为你的新生活答疑解惑</p></div><button data-action="ask">向他提问</button></aside>
+      </div>
+    </main>
+    <nav class="bottom-nav"><button class="nav-item active"><strong>✓</strong>新生指南</button><button class="nav-item" data-action="ask"><strong>＋</strong>提问</button></nav>
+  </div>
+  <section class="qa-page" id="qaPage"><div class="qa-top"><button class="back" id="backHome" aria-label="返回">‹</button><h2>校园问答</h2></div><div class="qa-banner"><div class="qa-avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div><h3>本校服务学长 · 校园问答</h3><p>基于本校资料在线回答</p></div></div><div class="always-qr"><img src="wechat-qr.jpg" alt="卫冕（服务版）微信二维码" /><div><h3>学长微信</h3><p>扫码添加学长微信，获取校园地图。</p></div></div><p class="qa-note">内容仅供参考，请以学校官方通知为准</p><div class="question-chips" id="questionChips"></div><div class="chat"><div class="chat-avatar"><img src="senior-avatar.jpg" alt="本校服务学长头像" /></div><div class="bubble">你好，我是本校服务学长。你可以选择下面的问题查看答案。</div></div><div class="qa-answer" id="qaAnswer"></div><form class="ask-input" id="askForm"><input id="customQuestion" type="text" placeholder="问点校园里的事…" aria-label="输入其他问题" required /><button type="submit">发送</button></form></section>
+  <div class="modal" id="wechatModal" aria-hidden="true"><div class="dialog wechat-dialog" role="dialog" aria-modal="true" aria-labelledby="wechatTitle"><div class="dialog-head"><span id="wechatTitle" class="dialog-title">学长微信</span><button class="close" id="closeWechat" aria-label="关闭">×</button></div><img class="wechat-qr" src="wechat-qr.jpg" alt="卫冕（服务版）微信二维码" /><p class="wechat-name">卫冕（服务版）</p><p class="wechat-tip">你的问题学长给你单独解答，添加学长微信获取即可，额外赠送一份校园地图。</p></div></div>
+  <div class="modal" id="modal" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-head"><div class="dialog-title"><span class="q-mark">答</span><span id="dialogTitle">新生服务站</span></div><button class="close" id="closeModal" aria-label="关闭">×</button></div><p class="answer" id="dialogAnswer"></p><div class="dialog-foot">以上为示例内容，具体安排请以学校正式通知为准。</div></div></div>
+  <script>
+    const guides = [
+      ['报','开学前必看','c1','录取之后会有助班（学校指定）加你们，选宿舍、缴费、新生网站注册、拉班群，这些都会提前发你们，所以不用太急。\n\n像奖学金、贫困生补助、助学贷款都会在录取通知书有详细资料，一切以学校官方为准，防止被骗！！！'],
+      ['舍','宿舍介绍','c2','珠海校区无8栋。\n\n一期宿舍（1-7栋）：四人上下床+小客厅（一楼为上床下桌）。\n二期宿舍（9-15栋）：9-14栋四人上下床+小客厅；15栋四人上床下桌。\n三期宿舍（16-22栋）：16-19栋四人上下床+小客厅；20-22栋四人上床下桌。\n四期宿舍（23-28栋）：四人上床下桌。\n独栋宿舍（29-30栋）：四人上床下桌，带电梯。\n五期宿舍（31-34栋）：四人上床下桌（带电梯）。\n\n配有饮水机，无洗衣机需自行购买。24小时不断水断电，但是断网（校园网无线，11点半左右；校园宽带凌晨2点半左右）。宿舍每月配有8度电、4顿水的免费额度。\n\n上下床尺寸：0.8×1.9；上床下桌尺寸：0.9×1.9。'],
+      ['动','运动场所','c3','珠海校区运动场所：\n\n室内：健身房（5饭3楼，需要在welink上预约）；羽毛球馆+乒乓球馆（3、4饭3楼，需要在welink预约）。\n\n室外：风雨操场（400米）、网球场、篮球场、足球场、排球场。'],
+      ['快','寄快递地址','c4','珠海校区：广东省珠海市金湾区广东科学技术职业学院（珠海校区）。\n\n除了邮政、韵达，在学校东门对面；其他常规的都在校内教四后面，如有变动会通知。\n\n广州校区：广东省广州市天河区广东科学技术职业学院（广州校区）。'],
+      ['食','食堂介绍','c5','校内现有4个食堂，相当于三个地点：5饭堂、6饭堂、3、4饭堂在一起。\n\n两个食堂目前因特殊原因关门（1、2饭在一起）。\n\n食堂内的东西基本可以点外卖送到宿舍楼下，可以在开学前在外卖平台上改学校地址，就能比较全面地看到食堂有什么吃的了。'],
+      ['军','军训时间','c6','2026年9月16日到9月29日，时间为两周。'],
+      ['路','校内交通','c7','有校园巴士，一元一次。\n\n美团共享单车月卡6.5米。\n\n禁摩托，可以有电动滑板车。'],
+      ['录','录取查询','c8','认准学校官方发布。\n\n录取查询方式：考生可通过微信小程序“广东科学技术职业学院招生办”下方的自助查询查看录取信息。']
+    ];
+    const questions = [
+      ['社团什么时候招新？','开学这几天会在线下举办，可自行选择。'],
+      ['共享厨房怎么预约？','共享厨房在宿舍4栋、9栋、23栋旁边，可以在welink搜索“场馆预约系统”进行预约。'],
+      ['珠海校区周边有什么？','珠海校区周边有两个商圈，一条美食街，骑单车15分钟能到。公交一个小时到澳门。'],
+      ['如何转专业？','转专业条件\n\n（一）学生入校后原则上应按照被录取的专业就读。\n\n下列情况允许转专业：\n1.经考察学生确有专长、转专业更能发挥其专长者\n2.新生入学后经复查发现某种疾病或生理缺陷，经学校指定的医院检查证明，不能在原专业学习，但尚能在本校其他专业学习者；\n3.经学校认可，学生确有某种特殊困难，不转专业则无法继续学习者；\n4.休学创业或退役大学生士兵复学，可根据本人意愿或学校的专业设置变化情况进行转专业；\n5.各二级学院根据各专业招生人数、教学组织需要及社会对人才需求的发展变化，必要时可在征得学生同意的情况下适当调整部分学生的专业；\n6.各类教学改革（包括：大类招生培养分流、创新班选拔、学分制管理、对外交流合作、参与创新创业等），需要进行学生的专业调整的。\n\n（二）下列转专业申请不能被批准：\n\n1.按照艺术类专业招生办法录取的考生，要求转入非艺术类专业学习的；按照非艺术类专业招生办法录取的考生，要求转入艺术类专业学习的；\n2.文科类学生要求转入只招收理科类学生的专业的；\n3.招生时有明确规定不能转专业的本、专科学生，如定向生、国防生等；\n4.特殊录取类型学生申请转到统招专业的，如免试生、专插本、三二分段、五年一贯制、第二学士学位等；\n5.休学、保留学籍等学籍状况不正常的；\n6.已有一次转专业经历的；\n7.身体条件不符合转入专业要求的；\n8.应受到开除学籍处分或应予退学者；\n9.发放新生录取通知书和新生入学报到环节；\n10.本科三年级以上或专科二年级以上的；\n11.其他规定不能转专业的情形。\n\n转专业程序\n\n1.每年的6月、12月学生提出转专业申请，具体见学校通知；\n2.转出专业所在二级学院签署意见；\n3.转入二级学院签署意见（必要时进行测评）；\n4.转专业工作委员会审核；\n5.对已通过审核的转专业学生名单进行不少于5个工作日的公示，公示期满，学校正式发文公布转专业结果并将专业调整情况提交学信网，供学生查询；\n6.跨学院转专业的学生，应在学校规定的时间前往转入专业所在二级学院报到。\n\n转专业学籍管理\n\n1.学生转入新的专业后，必须修满转入专业人才培养方案所规定的课程学分、完全符合相关条件后方能毕业及获得学士学位，转专业前已修完的课程与转入专业相同，其学分数高于或等于转入专业的可互相替代，转入专业已开设完毕的课程，转入学生尚未修读的，须补修。\n\n2.转专业学生学费按转入专业入学当年的收费标准收取。']
+    ];
+    const answers = Object.fromEntries(guides.map(([, guideTitle, , guideAnswer]) => [guideTitle, guideAnswer]));
+    const grid = document.getElementById('guideGrid');
+    guides.forEach(([word, guideTitle, color, guideAnswer]) => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'guide-card';
+      card.innerHTML = `<div class="icon ${color}">${word}</div><span>${guideTitle}</span>`;
+      card.onclick = () => openDialog(guideTitle, guideAnswer);
+      grid.appendChild(card);
+    });
+    const modal=document.getElementById('modal'), title=document.getElementById('dialogTitle'), answer=document.getElementById('dialogAnswer');
+    function openDialog(key, directReply){
+      const reply = directReply || answers[key];
+      if (!reply) return;
+      title.textContent = key;
+      answer.textContent = reply;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    const app=document.querySelector('.app'), qaPage=document.getElementById('qaPage'), chips=document.getElementById('questionChips'), qaAnswer=document.getElementById('qaAnswer');
+    questions.forEach(([question,reply]) => { const b=document.createElement('button'); b.className='chip'; b.textContent=question; b.onclick=()=>{ qaAnswer.textContent=reply; qaAnswer.classList.add('show'); }; chips.appendChild(b); });
+    function showAsk(){ app.style.display='none'; qaPage.classList.add('show'); window.scrollTo(0,0); }
+    document.addEventListener('click',e=>{ const open=e.target.closest('[data-open]'); if(open) openDialog(open.dataset.open); const ask=e.target.closest('[data-action="ask"]'); if(ask) showAsk(); });
+    document.getElementById('backHome').onclick=()=>{ qaPage.classList.remove('show'); app.style.display=''; qaAnswer.classList.remove('show'); window.scrollTo(0,0); };
+    const wechatModal=document.getElementById('wechatModal'), customQuestion=document.getElementById('customQuestion');
+    function showWechat(){ wechatModal.classList.add('open'); wechatModal.setAttribute('aria-hidden','false'); }
+    document.getElementById('askForm').onsubmit=e=>{ e.preventDefault(); if(customQuestion.value.trim()) showWechat(); };
+    function closeModal(target){ target.classList.remove('open'); target.setAttribute('aria-hidden','true'); }
+    document.getElementById('closeWechat').onclick=()=>closeModal(wechatModal);
+    wechatModal.onclick=e=>{ if(e.target===wechatModal) closeModal(wechatModal); };
+    document.getElementById('closeModal').onclick=()=>closeModal(modal);
+    modal.onclick=e=>{ if(e.target===modal) closeModal(modal); };
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(modal); closeModal(wechatModal); } });
+  </script>
+</body>
+</html>
