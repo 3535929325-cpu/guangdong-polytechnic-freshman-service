@@ -1,0 +1,11 @@
+web/node_modules/
+web/dist/
+exports/final/frames/
+exports/final/page@*.webm
+exports/final/neuron_factory_raw.webm
+exports/final/smoke_*.png
+exports/final/review_*.png
+exports/*.blend1
+__pycache__/
+*.pyc
+.DS_Store
