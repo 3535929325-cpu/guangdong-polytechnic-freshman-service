@@ -1,0 +1,139 @@
+{
+  "title": "神经元工厂 · 单词记忆连接",
+  "duration": 75,
+  "fps": 24,
+  "resolution": [1920, 1080],
+  "words": {
+    "form": "記憶（きおく）",
+    "meaning": "记忆",
+    "background": ["音楽（おんがく）", "食べる（たべる）", "走る", "水", "空"]
+  },
+  "palette": {
+    "courierBlue": "#2F6BFF",
+    "neuronPink": "#F2A8B8",
+    "neuronBlue": "#A8C8F0",
+    "cream": "#F5EDE0",
+    "flesh": "#E8C4B8",
+    "amber": "#E8A04A",
+    "warmWhite": "#FFF6E8",
+    "bgDeep": "#2A1F28"
+  },
+  "shots": [
+    {
+      "id": "S01",
+      "name": "入厂",
+      "start": 0,
+      "end": 8,
+      "camera": {
+        "from": { "pos": [4.2, 2.4, 8.8], "target": [0.4, 1.0, 4.8] },
+        "to": { "pos": [2.4, 1.8, 6.4], "target": [0.2, 0.95, 3.2] }
+      },
+      "beat": "蓝信使坐传送带滑入颅腔大门；切主观"
+    },
+    {
+      "id": "S02",
+      "name": "厂景升起",
+      "start": 8,
+      "end": 15,
+      "camera": {
+        "from": { "pos": [1.8, 1.6, 7.2], "target": [0.1, 0.9, 4.0] },
+        "to": { "pos": [0.0, 9.5, 11.0], "target": [0.0, 1.2, -1.5] }
+      },
+      "beat": "升起看整厂：螺旋带、粉蓝代理人、词盒流"
+    },
+    {
+      "id": "S03",
+      "name": "锁定記憶盒",
+      "start": 15,
+      "end": 25,
+      "camera": {
+        "from": { "pos": [0.0, 9.5, 11.0], "target": [0.0, 1.2, -1.5] },
+        "to": { "pos": [2.2, 1.5, 2.8], "target": [1.0, 0.7, 0.0] },
+        "follow": "wordBoxForm"
+      },
+      "beat": "降落跟随 記憶（きおく）奶油盒"
+    },
+    {
+      "id": "S04",
+      "name": "外形委任",
+      "start": 25,
+      "end": 35,
+      "camera": {
+        "from": { "pos": [2.2, 1.5, 2.8], "target": [1.0, 0.7, 0.0] },
+        "to": { "pos": [3.2, 2.0, 2.2], "target": [1.45, 1.1, -0.5] }
+      },
+      "beat": "树突臂取盒 → 粉神经元铭牌亮起"
+    },
+    {
+      "id": "S05",
+      "name": "代理人海",
+      "start": 35,
+      "end": 42,
+      "camera": {
+        "from": { "pos": [3.2, 2.0, 2.2], "target": [1.45, 1.1, -0.5] },
+        "to": { "pos": [0.0, 12.5, 8.0], "target": [0.0, 1.5, -3.0] }
+      },
+      "beat": "急速抬升，成千上万代理人；只高亮目标"
+    },
+    {
+      "id": "S06",
+      "name": "释义委任",
+      "start": 42,
+      "end": 52,
+      "camera": {
+        "from": { "pos": [0.0, 12.5, 8.0], "target": [0.0, 1.5, -3.0] },
+        "to": { "pos": [-3.4, 2.0, 2.4], "target": [-1.55, 1.1, -1.0] }
+      },
+      "beat": "委任「记忆」释义代理人"
+    },
+    {
+      "id": "S07",
+      "name": "突触生长",
+      "start": 52,
+      "end": 68,
+      "camera": {
+        "from": { "pos": [-3.4, 2.0, 2.4], "target": [-1.55, 1.1, -1.0] },
+        "to": { "pos": [0.0, 2.2, 4.6], "target": [0.0, 1.2, -0.75] },
+        "orbit": true
+      },
+      "beat": "双突触生长，手拉手，暖白闪光＝记住"
+    },
+    {
+      "id": "S08",
+      "name": "定格收束",
+      "start": 68,
+      "end": 75,
+      "camera": {
+        "from": { "pos": [0.0, 2.2, 4.6], "target": [0.0, 1.2, -0.75] },
+        "to": { "pos": [0.0, 1.7, 3.2], "target": [0.0, 1.25, -0.75] }
+      },
+      "beat": "缓推稳定连接 + 字幕收束"
+    }
+  ],
+  "subtitles": [
+    { "start": 4.0, "end": 10.0, "text": "每接收一个新的单词外形，比如 記憶（きおく）……" },
+    { "start": 10.0, "end": 16.5, "text": "大脑就把这个外形打包，委托给几十亿神经元中的一个。" },
+    { "start": 16.5, "end": 24.0, "text": "告诉它：以后你就专门负责 記憶（きおく） 这个样子的单词。" },
+    { "start": 24.0, "end": 32.0, "text": "神经元接下任务，成为这个单词外形的专职代理人。" },
+    { "start": 35.0, "end": 41.0, "text": "成千上万个专职代理人，各守一词。" },
+    { "start": 42.0, "end": 50.0, "text": "同理，当你接收「记忆」这个中文释义时……" },
+    { "start": 50.0, "end": 56.0, "text": "大脑把这个含义打包委托给另一个神经元。" },
+    { "start": 56.0, "end": 64.0, "text": "神经元长长的尾巴就是突触，它会不断生长……" },
+    { "start": 64.0, "end": 72.0, "text": "和另一个神经元连在一起，形成稳定联系——你就记住了这个单词。" },
+    { "start": 72.0, "end": 75.0, "text": "外形代理人 × 释义代理人 = 记住。" }
+  ],
+  "events": [
+    { "t": 0.0, "type": "conveyor", "speed": 0.35 },
+    { "t": 7.2, "type": "enterGate" },
+    { "t": 18.0, "type": "lockWordBox", "id": "form" },
+    { "t": 26.0, "type": "armGrab", "target": "form" },
+    { "t": 30.5, "type": "assignAgent", "agent": "form", "label": "記憶（きおく）" },
+    { "t": 36.0, "type": "liftSea" },
+    { "t": 44.0, "type": "armGrab", "target": "meaning" },
+    { "t": 48.5, "type": "assignAgent", "agent": "meaning", "label": "记忆" },
+    { "t": 53.0, "type": "synapseGrow", "duration": 12.0 },
+    { "t": 65.0, "type": "handshake" },
+    { "t": 66.0, "type": "rememberFlash" },
+    { "t": 68.0, "type": "holdConnection" }
+  ]
+}

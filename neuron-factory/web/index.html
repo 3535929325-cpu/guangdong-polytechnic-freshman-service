@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>神经元工厂 · 75s</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #2a1f28;
+        --cream: #f5ede0;
+        --pink: #f2a8b8;
+        --blue: #2f6bff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #1a1218;
+        color: var(--cream);
+        font-family: "Noto Sans SC", "Zen Maru Gothic", sans-serif;
+        overflow: hidden;
+      }
+      #app {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      #hud {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: 22px 28px 28px;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        font-size: 15px;
+        opacity: 0.9;
+      }
+      .brand span {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0.65;
+      }
+      .controls {
+        pointer-events: auto;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      button,
+      .time {
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(245, 237, 224, 0.14);
+        color: var(--cream);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        backdrop-filter: blur(8px);
+        cursor: pointer;
+      }
+      button:hover {
+        background: rgba(245, 237, 224, 0.24);
+      }
+      .time {
+        cursor: default;
+        min-width: 88px;
+        text-align: center;
+      }
+      #subtitle {
+        justify-self: center;
+        align-self: end;
+        max-width: min(920px, 92vw);
+        margin-bottom: 18px;
+        padding: 14px 22px;
+        border-radius: 18px;
+        background: rgba(26, 18, 24, 0.55);
+        color: #fff8f0;
+        font-size: clamp(16px, 2.2vw, 22px);
+        line-height: 1.55;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      #subtitle.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #seek {
+        pointer-events: auto;
+        width: min(920px, 92vw);
+        justify-self: center;
+        accent-color: #f2a8b8;
+      }
+      .shot-tag {
+        position: absolute;
+        left: 28px;
+        bottom: 64px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="hud">
+        <div class="top">
+          <div class="brand">
+            神经元工厂
+            <span>外形代理人 × 释义代理人</span>
+          </div>
+          <div class="controls">
+            <button id="playBtn" type="button">Play</button>
+            <button id="restartBtn" type="button">Restart</button>
+            <div class="time" id="timeLabel">0.0 / 75.0</div>
+          </div>
+        </div>
+        <div></div>
+        <div>
+          <div class="shot-tag" id="shotTag">S01 入厂</div>
+          <div id="subtitle"></div>
+          <input id="seek" type="range" min="0" max="75" step="0.05" value="0" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
